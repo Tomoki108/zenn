@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "new": "zenn new:article"
+    "new": "zenn new:article",
+    "prev": "zenn preview"
   },
   "keywords": [],
   "author": "",
