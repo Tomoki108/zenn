@@ -9,7 +9,7 @@ published: false
 無職が**本気で**ポートフォリオのためのフルスタック Web アプリケーションを開発したので、記事にまとめます。同士の参考になれば幸いです。
 
 - 運用も考慮し、CICD ワークフローの構築、Infrastructue as Code によるリソース定義、開発環境と本番環境の分離も実現しています。
-- **ソースコードは全て公開しています。** (LICENSE: [AGPL 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html))
+- **ソースコードは全て公開しています。**
 
 https://github.com/Tomoki108/burny
 
