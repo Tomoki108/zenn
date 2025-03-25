@@ -15,7 +15,9 @@ https://github.com/Tomoki108/burny
 
 # 作ったもの
 
-スクラム方式の開発チームに向けた、Burny というバーンアップチャートを生成するアプリケーションを作成しました。
+スクラム方式の開発チームに向けた、Burny というバーンアップチャートを生成するアプリケーションを開発しました。
+
+前職で空き時間に同様のツールを Google Apps Script で作っていたのですが、スプレッドシートと密結合しているが故の不安定性が課題でした。Web アプリケーションとして使いやすく安定しているものを作れたとおもいます。
 
 https://burny.page/
 
@@ -51,6 +53,7 @@ https://burny.page/
 [README.md](https://github.com/Tomoki108/burny/tree/dev/web)
 
 - Vue.js 3 の Composition API で実装した SPA。Cloud Storage の静的サイトホスティングでホストしています。
+  - API を完全に分離しており、SSR や SSG を使うつもりがなかったので Nuxt.js は採用していません。
 - UI には[Vuetify](https://github.com/vuetifyjs/vuetify)と[Chart.js](https://www.chartjs.org/)を活用しています。
 - Vue の[composable](https://ja.vuejs.org/guide/reusability/composables)、データストアライブラリの[Pinia](https://github.com/vuejs/pinia)によって状態管理を伴うロジックをカプセル化しています。
 
