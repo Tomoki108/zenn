@@ -6,10 +6,10 @@ topics: [go, vue, googlecloud, 個人開発, ポートフォリオ]
 published: false
 ---
 
-無職が**本気で**ポートフォリオ（ここでは能力を証明するための自作アプリケーションの意）を作成したので、記事にまとめます。ポートフォリオを作成している同士の参考になれば幸いです。
+無職が**本気で**ポートフォリオ[^1]を作成したので、記事にまとめます。ポートフォリオを作成している同士の参考になれば幸いです。
 
 - 運用も考慮し、CICD ワークフローの構築、Infrastructue as Code によるリソース定義、開発環境と本番環境の分離も実現しています。
-- **ソースコードは全て公開しています。**
+- **ソースコードは全て公開しています。** (LICENSE: [AGPL 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html))
 
 https://github.com/Tomoki108/burny
 
@@ -33,4 +33,35 @@ https://burny.page/
 
 ## 画面例
 
-![image](/images/202503_burny/project_detail_page.png)
+![screen_example](/images/202503_burny/project_detail_page.png)
+
+# アーキテクチャ
+
+## Backend
+
+- Go の[echo](https://github.com/labstack/echo) FW で作成した REST API サーバー。Cloud Run 上で動作します。
+- 緩い Clean Architecture で実装しており、`外部インターフェース層->ユースケース層->ドメイン層`の一方向の依存関係を持ちます。
+  - 依存性逆転は DB との通信等を行う `infrastrucure <-> usecase package`の間でのみ適用。`infrastrucure`は`domain`のインターフェースを実装し、`usecase`にそれを DI しています。
+- [uber-go/dig](https://github.com/uber-go/dig)による DI や、[asaskevich/EventBus](https://github.com/asaskevich/EventBus)によるイベント駆動処理も特徴です。
+- [README.md](https://github.com/Tomoki108/burny/tree/dev/api)
+
+## Frontend
+
+- Vue.js 3 の Composition API で実装した SPA。Cloud Storage の静的サイトホスティングでホストしています。
+- UI には[Vuetify](https://github.com/vuetifyjs/vuetify)と[Chart.js](https://www.chartjs.org/)を活用しています。
+- Vue の[composable](https://ja.vuejs.org/guide/reusability/composables)、データストアの[Pinia](https://github.com/vuejs/pinia)によって状態管理を伴うロジックをカプセル化しています。
+- [README.md](https://github.com/Tomoki108/burny/tree/dev/web)
+
+## Infra
+
+- Terraform による Google Cloud のリソースの IaC。
+- `dev`, `prod`, `dns`の３つのルートモジュールと、それぞれに対応する Google Cloud のプロジェクトが存在します。
+  - `dns`を独立させたのは、ドメインの管理を`prod`に入れてしまうと`dev -> prod`の依存関係が発生してしまうからです。
+- リソース群を`backend`, `frontend`, `github (Gitub Actionsでの認証認可のためのリソース)` の３つのモジュールに切り出してルートから利用しています。
+- `terraform graph`で作成した`prod`環境のリソース図：
+  ![infra_architecture](/images/202503_burny/graph.png)
+- [README.md](https://github.com/Tomoki108/burny/tree/dev/infra)
+
+## CI/CD
+
+[^1]: ここでは能力を証明するための自作アプリケーションの意
