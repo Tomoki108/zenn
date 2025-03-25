@@ -83,7 +83,7 @@ https://burny.page/
 
 ここでは「外部サービスのみをモックした状態で、ユーザーの実際の操作と同様のフローで行う結合テスト」をシナリオテストと呼んでいます。
 
-- Backend: [senariop_test.go](https://github.com/Tomoki108/burny/blob/dev/api/scenario/scenario_test.go)
+- Backend: [senario_test.go](https://github.com/Tomoki108/burny/blob/dev/api/scenario/scenario_test.go)
   - API のレスポンス JSON をファイルで保持し比較する Golden ファイルテスト。
 - Frontend: [{pgae_name}.spec.ts](https://github.com/Tomoki108/burny/tree/dev/web/tests)
   - [Playwright](https://playwright.dev/)を使った実際にブラウザを操作するテスト。
