@@ -6,7 +6,7 @@ topics: [go, vue, googlecloud, 個人開発, ポートフォリオ]
 published: false
 ---
 
-無職が**本気で**ポートフォリオ[^1]を作成したので、記事にまとめます。ポートフォリオを作成している同士の参考になれば幸いです。
+無職が**本気で**ポートフォリオのためのフルスタック Web アプリケーションを開発したので、記事にまとめます。同士の参考になれば幸いです。
 
 - 運用も考慮し、CICD ワークフローの構築、Infrastructue as Code によるリソース定義、開発環境と本番環境の分離も実現しています。
 - **ソースコードは全て公開しています。** (LICENSE: [AGPL 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html))
@@ -17,11 +17,11 @@ https://github.com/Tomoki108/burny
 
 スクラム方式の開発チームに向けた、Burny というバーンアップチャートを生成するアプリケーションを作成しました。
 
+https://burny.page/
+
 :::message
 バーンアップチャートは、プロジェクトの総ストーリーポイント、期間、各スプリントの実際の消化ストーリーポイントを元に、進捗が理想と比べてビハインドしているか上回っているかを可視化するチャートです。
 :::
-
-https://burny.page/
 
 ## 機能
 
@@ -43,9 +43,8 @@ https://burny.page/
 
 - Go の[echo](https://github.com/labstack/echo) FW で作成した REST API サーバー。Cloud Run 上で動作します。
 - 緩い Clean Architecture で実装しており、`外部インターフェース層->ユースケース層->ドメイン層`の一方向の依存関係を持ちます。
-  - 依存性逆転は DB との通信等を行う `infrastrucure <-> usecase package`の間でのみ適用。`infrastrucure`は`domain`のインターフェースを実装し、`usecase`にそれを DI しています。
+  - 依存性逆転は DB との通信等を行う `infrastrucure package`と、それを利用する`usecase package`の間でのみ適用。`infrastrucure`は`domain`のインターフェースを実装し、`usecase`にそれを DI しています。
 - [uber-go/dig](https://github.com/uber-go/dig)による DI や、[asaskevich/EventBus](https://github.com/asaskevich/EventBus)によるイベント駆動処理も特徴です。
-- [README.md](https://github.com/Tomoki108/burny/tree/dev/api)
 
 ## Frontend
 
@@ -53,7 +52,7 @@ https://burny.page/
 
 - Vue.js 3 の Composition API で実装した SPA。Cloud Storage の静的サイトホスティングでホストしています。
 - UI には[Vuetify](https://github.com/vuetifyjs/vuetify)と[Chart.js](https://www.chartjs.org/)を活用しています。
-- Vue の[composable](https://ja.vuejs.org/guide/reusability/composables)、データストアの[Pinia](https://github.com/vuejs/pinia)によって状態管理を伴うロジックをカプセル化しています。
+- Vue の[composable](https://ja.vuejs.org/guide/reusability/composables)、データストアライブラリの[Pinia](https://github.com/vuejs/pinia)によって状態管理を伴うロジックをカプセル化しています。
 
 ## Infra
 
@@ -80,7 +79,7 @@ https://burny.page/
   - API のレスポンス JSON をファイルで保持し比較する Golden ファイルテスト。
 - Frontend: [{pgae_name}.spec.ts](https://github.com/Tomoki108/burny/tree/dev/web/tests)
   - [Playwright](https://playwright.dev/)を使った実際にブラウザを操作するテスト。
-  - API は Playwrite の機能でモック。
+  - API は Playwright の機能でモック。
 
 ### フロー
 
@@ -89,6 +88,15 @@ https://burny.page/
 
 # 活用した AI
 
+- ChatGPT Plus ($20/month)
+  - 無料の`o3-mini`モデル では解決できなかった問題を、 有料の`o3-mini-high`モデル で解決できたことがあったので課金して良かったです。
+- GitHub Copilot ($10/month)
+  - **Agent モードがかなり凄いです。** トップページなどはほとんど実装してもらいました。
+- [uizard](https://uizard.io/) ($19/month)
+  - デザインの構想を得るために使いましたが、スクリプトによる修正依頼やコード生成の機能が実用的ではなかったためあまりお勧めできません。
+
 # 終わりに
 
-[^1]: ここでは能力を証明するための自作アプリケーションの意
+0 から独力でアプリケーションを構築したことがなかったのが今まで負い目だったのですが、それができることを自分自身に証明することができてとても良かったです。この経験が糧になると信じて就職活動頑張ります。
+
+また、この記事がポートフォリオの作成を考えている方、作成中の方の何らかの参考になれば幸いです。
