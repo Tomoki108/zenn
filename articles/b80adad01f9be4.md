@@ -3,7 +3,7 @@ title: "無職の本気ポートフォリオ（Go * Vue.js * Google Cloud）"
 emoji: "❤️‍🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [go, vue, googlecloud, 個人開発, ポートフォリオ]
-published: false
+published: true
 ---
 
 無職が **1 ヶ月半かけ本気で**ポートフォリオのためのフルスタック Web アプリケーションを開発したので、記事にまとめます。同志の参考になれば幸いです。
