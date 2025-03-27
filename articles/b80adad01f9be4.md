@@ -44,7 +44,7 @@ https://burny.page/
 - チーム開発を想定したドキュメンテーション
 - レポジトリ公開のための、環境変数やシークレットマネジャーによる徹底した機密情報の秘匿
 
-## Backend
+## api
 
 [README.md](https://github.com/Tomoki108/burny/tree/dev/api)
 
@@ -53,7 +53,7 @@ https://burny.page/
   - 依存性逆転は DB との通信等を行う `infrastrucure package`と、それを利用する`usecase package`の間でのみ適用。`infrastrucure`は`domain`のインターフェースを実装し、`usecase`にそれを DI しています。
 - [uber-go/dig](https://github.com/uber-go/dig)による DI や、[asaskevich/EventBus](https://github.com/asaskevich/EventBus)によるイベント駆動処理も特徴です。
 
-## Frontend
+## web
 
 [README.md](https://github.com/Tomoki108/burny/tree/dev/web)
 
@@ -62,7 +62,7 @@ https://burny.page/
 - UI には[Vuetify](https://github.com/vuetifyjs/vuetify)と[Chart.js](https://www.chartjs.org/)を活用しています。
 - Vue の[composable](https://ja.vuejs.org/guide/reusability/composables)、データストアライブラリの[Pinia](https://github.com/vuejs/pinia)によって状態管理を伴うロジックをカプセル化しています。
 
-## Infra
+## infra
 
 [README.md](https://github.com/Tomoki108/burny/tree/dev/infra)
 
@@ -79,13 +79,13 @@ https://burny.page/
 
 ### テスト戦略
 
-最もコストパフォーマンスの高いテストを考えた結果、Backend、Frontend ともに正常系のシナリオテストのみを実装することにしました。
+最もコストパフォーマンスの高いテストを考えた結果、api、web ともに正常系のシナリオテストのみを実装することにしました。
 
 ここでは「外部サービスのみをモックした状態で、ユーザーの実際の操作と同様のフローで行う結合テスト」をシナリオテストと呼んでいます。
 
-- Backend: [senario_test.go](https://github.com/Tomoki108/burny/blob/dev/api/scenario/scenario_test.go)
+- api: [scenario_test.go](https://github.com/Tomoki108/burny/blob/dev/api/scenario/scenario_test.go)
   - API のレスポンス JSON をファイルで保持し比較する Golden ファイルテスト。
-- Frontend: [{pgae_name}.spec.ts](https://github.com/Tomoki108/burny/tree/dev/web/tests)
+- web: [{pgae_name}.spec.ts](https://github.com/Tomoki108/burny/tree/dev/web/tests)
   - [Playwright](https://playwright.dev/)を使った実際にブラウザを操作するテスト。
   - API は Playwright の機能でモック。
 
