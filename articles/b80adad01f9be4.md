@@ -21,6 +21,11 @@ https://github.com/Tomoki108/burny
 
 https://burny.page/
 
+:::message alert
+就職活動が終了したため、Web アプリケーションの公開は終了しました。Wayback Machine からトップページのみ閲覧可能です。
+https://web.archive.org/web/20250629041747/https://burny.page/
+:::
+
 :::message
 バーンアップチャートは、プロジェクトの総ストーリーポイント、期間、各スプリントの実際の消化ストーリーポイントを元に、進捗が理想と比べてビハインドしているか上回っているかを可視化するチャートです。
 :::
